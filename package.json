@@ -1,0 +1,31 @@
+{
+  "name": "webpack-typescript-react-setup",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsd": "tsd install react --save"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixelbreaker/webpack-typescript-react-setup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pixelbreaker/webpack-typescript-react-setup/issues"
+  },
+  "homepage": "https://github.com/pixelbreaker/webpack-typescript-react-setup#readme",
+  "devDependencies": {
+    "css-loader": "^0.19.0",
+    "gulp": "^3.9.0",
+    "path": "^0.12.7",
+    "react": "^0.13.3",
+    "style-loader": "^0.12.4",
+    "ts-loader": "^0.5.5",
+    "tsd": "^0.6.4",
+    "typescript": "^1.6.2",
+    "webpack": "^1.12.2"
+  }
+}
