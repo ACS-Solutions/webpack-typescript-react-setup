@@ -1,0 +1,6 @@
+{
+  "name": "webpack-typescript-react-setup",
+  "root": "./dist",
+  "clean_urls": false,
+  "error_page": "error.html"
+}
