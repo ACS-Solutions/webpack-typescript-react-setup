@@ -17,6 +17,15 @@ module.exports = {
     extensions: ['', '.webpack.js', '.web.js', '.js', '.css', '.ts', '.tsx']
   },
   devtool: 'source-map',
+  postcss: [
+    require('postcss-nested'),
+    require('cssnext')({
+      browsers: [
+        "last 2 versions",
+        "ie >= 9"
+      ]
+    })
+  ],
   module: {
     loaders: [
       {
@@ -25,7 +34,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader?modules"
+        loader: 'style-loader!css-loader?modules&localIdentName=' + (
+          process.env.NODE_ENV === 'development' ?
+            '[name]__[local]___[hash:base64:5]' :
+            '[hash:base64:5]'
+        ) +'!postcss-loader'
       }
     ]
   }

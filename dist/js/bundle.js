@@ -20530,8 +20530,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules!./Entry.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?modules!./Entry.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules&localIdentName=[hash:base64:5]!./../../node_modules/postcss-loader/index.js!./Entry.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?modules&localIdentName=[hash:base64:5]!./../../node_modules/postcss-loader/index.js!./Entry.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -20549,11 +20549,11 @@
 	
 	
 	// module
-	exports.push([module.id, "._2R9511VCeXiZx_Q-PUzTNi {\r\n  color: red;\r\n}\r\n", ""]);
+	exports.push([module.id, "._3FLmA {\r\n  color: red;\r\n}\r\n", ""]);
 	
 	// exports
 	exports.locals = {
-		"Entry": "_2R9511VCeXiZx_Q-PUzTNi"
+		"Entry": "_3FLmA"
 	};
 
 /***/ },
@@ -20853,8 +20853,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules!./Exit.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?modules!./Exit.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules&localIdentName=[hash:base64:5]!./../../node_modules/postcss-loader/index.js!./Exit.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?modules&localIdentName=[hash:base64:5]!./../../node_modules/postcss-loader/index.js!./Exit.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -20872,11 +20872,11 @@
 	
 	
 	// module
-	exports.push([module.id, "._1FPcrXLdGYq9jwlAoGOORG {\r\n  color: blue;\r\n}\r\n", ""]);
+	exports.push([module.id, ".H_C5t {\r\n  color: blue;\r\n  border-radius: 10px;\r\n  background-color: #ededed;\r\n  transition: background-color 0.2s ease-in;\r\n}\n.H_C5t:hover {\r\n  background-color: red;\r\n}\r\n", ""]);
 	
 	// exports
 	exports.locals = {
-		"Entry": "_1FPcrXLdGYq9jwlAoGOORG"
+		"Entry": "H_C5t"
 	};
 
 /***/ },
