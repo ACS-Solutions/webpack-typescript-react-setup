@@ -7,11 +7,11 @@ module.exports = {
     path: path.join(__dirname, "dist/js"),
     filename: "bundle.js"
   },
-	// resolve: {
-  // 	root: [
-  //   	path.join(__dirname, "src"),
-  //   ]
-  // },
+	resolve: {
+  	root: [
+    	path.join(__dirname, "src"),
+    ]
+  },
   // Currently we need to add '.ts' to resolve.extensions array.
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.js', '.css', '.ts', '.tsx']

@@ -1,8 +1,12 @@
 //import * as React from 'react';
 import * as React from 'react';
-import {Entry} from './modules/Entry.tsx';
+import Entry from './modules/Entry.tsx';
+import Exit from './modules/Exit.tsx';
 
 React.render(
-  <Entry name="Goodbye World!" />,
+  <div>
+    <Entry name="Hello World!" />
+    <Exit name="Goodbye World!" />
+  </div>,
   document.getElementById('content')
 );

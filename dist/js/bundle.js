@@ -47,7 +47,8 @@
 	//import * as React from 'react';
 	var React = __webpack_require__(1);
 	var Entry_tsx_1 = __webpack_require__(157);
-	React.render(React.createElement(Entry_tsx_1.Entry, {"name": "Goodbye World!"}), document.getElementById('content'));
+	var Exit_tsx_1 = __webpack_require__(167);
+	React.render(React.createElement("div", null, React.createElement(Entry_tsx_1.default, {"name": "Hello World!"}), React.createElement(Exit_tsx_1.default, {"name": "Goodbye World!"})), document.getElementById('content'));
 
 
 /***/ },
@@ -20436,37 +20437,68 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var React = __webpack_require__(1);
-	var cssRequire = __webpack_require__(158);
-	var styles = cssRequire('Entry.css');
+	var BaseModule_1 = __webpack_require__(158);
 	var Entry = (function (_super) {
 	    __extends(Entry, _super);
 	    function Entry() {
 	        _super.apply(this, arguments);
 	    }
 	    Entry.prototype.render = function () {
+	        var styles = this.getStyles('Entry.css');
 	        return (React.createElement("div", {"className": styles.Entry}, this.props.name));
 	    };
 	    return Entry;
-	})(React.Component);
-	exports.Entry = Entry;
+	})(BaseModule_1.default);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Entry;
 
 
 /***/ },
 /* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = function(path) {
-	  return __webpack_require__(159)("./" + path);
-	}
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var React = __webpack_require__(1);
+	var cssRequire = __webpack_require__(159);
+	var BaseModule = (function (_super) {
+	    __extends(BaseModule, _super);
+	    function BaseModule() {
+	        _super.apply(this, arguments);
+	    }
+	    BaseModule.prototype.getStyles = function (stylesheet) {
+	        return cssRequire(stylesheet);
+	    };
+	    BaseModule.prototype.render = function () {
+	        return (React.createElement("div", null));
+	    };
+	    return BaseModule;
+	})(React.Component);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = BaseModule;
 
 
 /***/ },
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = function(path) {
+	  return __webpack_require__(160)("./" + path);
+	}
+
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var map = {
-		"./Entry": 160,
-		"./Entry.css": 160
+		"./Entry": 161,
+		"./Entry.css": 161,
+		"./Exit": 165,
+		"./Exit.css": 165
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -20479,20 +20511,20 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 159;
+	webpackContext.id = 160;
 
 
 /***/ },
-/* 160 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(161);
+	var content = __webpack_require__(162);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(163)(content, {});
+	var update = __webpack_require__(164)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -20509,10 +20541,10 @@
 	}
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(162)();
+	exports = module.exports = __webpack_require__(163)();
 	// imports
 	
 	
@@ -20525,7 +20557,7 @@
 	};
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports) {
 
 	/*
@@ -20581,7 +20613,7 @@
 
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -20803,6 +20835,74 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(166);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(164)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules!./Exit.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js?modules!./Exit.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(163)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "._1FPcrXLdGYq9jwlAoGOORG {\r\n  color: blue;\r\n}\r\n", ""]);
+	
+	// exports
+	exports.locals = {
+		"Entry": "_1FPcrXLdGYq9jwlAoGOORG"
+	};
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var React = __webpack_require__(1);
+	var BaseModule_1 = __webpack_require__(158);
+	var Exit = (function (_super) {
+	    __extends(Exit, _super);
+	    function Exit() {
+	        _super.apply(this, arguments);
+	    }
+	    Exit.prototype.render = function () {
+	        var styles = this.getStyles('Exit.css');
+	        return (React.createElement("div", {"className": styles.Entry}, this.props.name));
+	    };
+	    return Exit;
+	})(BaseModule_1.default);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Exit;
 
 
 /***/ }

@@ -6,9 +6,9 @@ interface Props {
   name: string;
 }
 
-export default class Entry extends BaseModule {
+export default class Exit extends BaseModule {
   render() {
-    var styles:any = this.getStyles('Entry.css');
+    var styles:any = this.getStyles('Exit.css');
 
     return (
       <div className={styles.Entry}>
