@@ -34,11 +34,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader?modules&localIdentName=' + (
-          process.env.NODE_ENV === 'development' ?
-            '[name]__[local]___[hash:base64:5]' :
-            '[hash:base64:5]'
-        ) +'!postcss-loader'
+        loader: "style-loader!css-loader?modules&!postcss-loader"
       }
     ]
   }
