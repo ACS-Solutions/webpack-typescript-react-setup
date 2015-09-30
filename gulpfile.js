@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var webpack = require('webpack');
 
 var paths = {
-  static:  './static/**/*.*',
+  static: './static/**/*.*',
   dist: './dist'
 };
 
