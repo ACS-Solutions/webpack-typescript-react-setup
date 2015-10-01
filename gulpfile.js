@@ -17,17 +17,19 @@ var paths = {
   appSource: './src/**/*.*'
 };
 
-gulp.task('copy', function(){
-  return gulp.src(paths.static)
+gulp.task('copy', function(cb){
+  gulp.src(paths.static)
     .pipe(gulp.dest(paths.dist));
+  cb()
 });
 
-gulp.task('webpack', function(){
+gulp.task('webpack', function(cb){
   webpack(
     require('./webpack.config.js'),
     function(err, stats) {
       if(stats) console.log(stats.toString('normal'));
       if(err) console.log(err);
+      cb()
     }
   );
 });

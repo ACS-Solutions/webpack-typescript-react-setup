@@ -15,3 +15,5 @@ html, body {
   font-family: var(--font-family-body);
   color: #111;
 }
+
+@import 'base/chrome.css';

@@ -44,10 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(157), __webpack_require__(199), __webpack_require__(213), __webpack_require__(214)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, React, react_router_1, App_1, About_1, Contact_1) {
-	    var cssRequire = __webpack_require__(201);
-	    var css = cssRequire('global.base.css');
-	    React.render((React.createElement(react_router_1.Router, null, React.createElement(react_router_1.Route, {"path": "/", "component": App_1.default}, React.createElement(react_router_1.Route, {"path": "about", "component": About_1.default}), React.createElement(react_router_1.Route, {"path": "contact", "component": Contact_1.default})))), document.body);
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(157), __webpack_require__(199), __webpack_require__(215), __webpack_require__(216), __webpack_require__(217)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, React, react_router_1, App_1, About_1, Users_1, User_1) {
+	    React.render((React.createElement(react_router_1.Router, null, React.createElement(react_router_1.Route, {"path": "/", "component": App_1.default}, React.createElement(react_router_1.Route, {"path": "about", "component": About_1.default}), React.createElement(react_router_1.Route, {"path": "users", "component": Users_1.default}, React.createElement(react_router_1.Route, {"path": "/users/:userId", "component": User_1.default}))))), document.body);
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 
@@ -24258,15 +24256,14 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(157), __webpack_require__(200)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, React, react_router_1, BaseModule_1) {
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(157), __webpack_require__(200), __webpack_require__(203)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, React, react_router_1, BaseModule_1) {
 	    var App = (function (_super) {
 	        __extends(App, _super);
 	        function App() {
-	            _super.apply(this, arguments);
+	            _super.call(this);
 	        }
 	        App.prototype.render = function () {
-	            var styles = this.getStyles('App.css');
-	            return (React.createElement("div", {"className": styles.Chrome}, React.createElement("nav", {"className": styles.TopNav}, React.createElement("ul", null, React.createElement("li", null, React.createElement(react_router_1.Link, {"to": "/about"}, "About")), React.createElement("li", null, React.createElement(react_router_1.Link, {"to": "/contact"}, "Contact")))), React.createElement("div", {"className": styles.Content}, this.props.children)));
+	            return (React.createElement("div", {"className": "Chrome"}, React.createElement("nav", {"className": "TopNav"}, React.createElement("ul", null, React.createElement("li", null, React.createElement(react_router_1.Link, {"to": "/about"}, "About")), React.createElement("li", null, React.createElement(react_router_1.Link, {"to": "/users"}, "Users")))), React.createElement("div", {"className": "Content"}, this.props.children)));
 	        };
 	        return App;
 	    })(BaseModule_1.BaseModule);
@@ -24317,14 +24314,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./About": 203,
-		"./About.css": 203,
-		"./App": 207,
-		"./App.css": 207,
-		"./Contact": 209,
-		"./Contact.css": 209,
-		"./global.base": 211,
-		"./global.base.css": 211
+		"./base.global": 203,
+		"./base.global.css": 203,
+		"./base/chrome": 207,
+		"./base/chrome.css": 207,
+		"./modules/About": 209,
+		"./modules/About.css": 209,
+		"./modules/User": 211,
+		"./modules/User.css": 211,
+		"./modules/Users": 213,
+		"./modules/Users.css": 213
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -24356,8 +24355,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules&!./../../node_modules/postcss-loader/index.js!./About.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?modules&!./../../node_modules/postcss-loader/index.js!./About.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./base.global.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/postcss-loader/index.js!./base.global.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -24372,15 +24371,13 @@
 
 	exports = module.exports = __webpack_require__(205)();
 	// imports
-	
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,500);", ""]);
 	
 	// module
-	exports.push([module.id, ".Xu5OWw7ayrKPGKspMG2pn {\r\n  color: red;\r\n  padding: 10px;\r\n}\r\n", ""]);
+	exports.push([module.id, "* {\r\n  box-sizing: border-box;\r\n}\r\n\r\nhtml, body {\r\n  height: 100%;\r\n  padding: 0;\r\n  margin: 0;\r\n  font-family: 'Fira Sans', Helvetica, Arial, _sansserif;\r\n  color: #111;\r\n}\r\n\r\n.Chrome {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-flex-direction: column;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\r\n\r\n.Chrome .TopNav {\r\n  width: 100%;\r\n  padding: 0;\r\n  background-color: #cdcdcd;\r\n  -webkit-flex: 0 0 auto;\r\n      -ms-flex: 0 0 auto;\r\n          flex: 0 0 auto;\r\n}\r\n\r\n.Chrome .TopNav ul {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.Chrome .TopNav ul li {\r\n  display: inline-block;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.Chrome .TopNav ul li a {\r\n  display: block;\r\n  padding: 20px;\r\n  text-decoration: none;\r\n  color: #000;\r\n  transition: background-color 0.2s ease;\r\n}\r\n\r\n.Chrome .TopNav ul li a:hover {\r\n  background-color: #fff;\r\n}\r\n\r\n.Chrome .Content {\r\n  -webkit-flex: 2 0 auto;\r\n      -ms-flex: 2 0 auto;\r\n          flex: 2 0 auto;\r\n  background-color: #ededed;\r\n}\r\n", ""]);
 	
 	// exports
-	exports.locals = {
-		"copy": "Xu5OWw7ayrKPGKspMG2pn"
-	};
+
 
 /***/ },
 /* 205 */
@@ -24679,8 +24676,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules&!./../../node_modules/postcss-loader/index.js!./App.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?modules&!./../../node_modules/postcss-loader/index.js!./App.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules&!./../../../node_modules/postcss-loader/index.js!./chrome.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules&!./../../../node_modules/postcss-loader/index.js!./chrome.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -24698,13 +24695,13 @@
 	
 	
 	// module
-	exports.push([module.id, "._1lPSntP7hERBaLjaVm0fn {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-flex-direction: column;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\n._1lPSntP7hERBaLjaVm0fn .trQQq2vsGUxoAkZu5gWgf {\r\n  width: 100%;\r\n  padding: 0;\r\n  background-color: #cdcdcd;\r\n  -webkit-flex: 0 0 auto;\r\n      -ms-flex: 0 0 auto;\r\n          flex: 0 0 auto;\r\n}\n._1lPSntP7hERBaLjaVm0fn .trQQq2vsGUxoAkZu5gWgf ul {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\n._1lPSntP7hERBaLjaVm0fn .trQQq2vsGUxoAkZu5gWgf ul li {\r\n  display: inline-block;\r\n  padding: 0;\r\n  margin: 0;\r\n}\n._1lPSntP7hERBaLjaVm0fn .trQQq2vsGUxoAkZu5gWgf ul li a {\r\n  display: block;\r\n  padding: 20px;\r\n  text-decoration: none;\r\n  color: #000;\r\n  transition: background-color 0.2s ease;\r\n}\n._1lPSntP7hERBaLjaVm0fn .trQQq2vsGUxoAkZu5gWgf ul li a:hover {\r\n  background-color: #fff;\r\n}\n._1lPSntP7hERBaLjaVm0fn .fi9HRRgaLHCCA-mEdcBuP {\r\n  -webkit-flex: 2 0 auto;\r\n      -ms-flex: 2 0 auto;\r\n          flex: 2 0 auto;\r\n  background-color: #ededed;\r\n}\r\n", ""]);
+	exports.push([module.id, "._1paxJZG6CAINHX7vCol9fM {\r\n  width: 100%;\r\n  height: 100%;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-flex-direction: column;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\n._1paxJZG6CAINHX7vCol9fM .fLi8Lt8bRBcoe_tqyXJwl {\r\n  width: 100%;\r\n  padding: 0;\r\n  background-color: #cdcdcd;\r\n  -webkit-flex: 0 0 auto;\r\n      -ms-flex: 0 0 auto;\r\n          flex: 0 0 auto;\r\n}\n._1paxJZG6CAINHX7vCol9fM .fLi8Lt8bRBcoe_tqyXJwl ul {\r\n  list-style-type: none;\r\n  padding: 0;\r\n  margin: 0;\r\n}\n._1paxJZG6CAINHX7vCol9fM .fLi8Lt8bRBcoe_tqyXJwl ul li {\r\n  display: inline-block;\r\n  padding: 0;\r\n  margin: 0;\r\n}\n._1paxJZG6CAINHX7vCol9fM .fLi8Lt8bRBcoe_tqyXJwl ul li a {\r\n  display: block;\r\n  padding: 20px;\r\n  text-decoration: none;\r\n  color: #000;\r\n  transition: background-color 0.2s ease;\r\n}\n._1paxJZG6CAINHX7vCol9fM .fLi8Lt8bRBcoe_tqyXJwl ul li a:hover {\r\n  background-color: #fff;\r\n}\n._1paxJZG6CAINHX7vCol9fM ._1vBCb1T1mgrDsFjYf1BVDh {\r\n  -webkit-flex: 2 0 auto;\r\n      -ms-flex: 2 0 auto;\r\n          flex: 2 0 auto;\r\n  background-color: #ededed;\r\n}\r\n", ""]);
 	
 	// exports
 	exports.locals = {
-		"Chrome": "_1lPSntP7hERBaLjaVm0fn",
-		"TopNav": "trQQq2vsGUxoAkZu5gWgf",
-		"Content": "fi9HRRgaLHCCA-mEdcBuP"
+		"Chrome": "_1paxJZG6CAINHX7vCol9fM",
+		"TopNav": "fLi8Lt8bRBcoe_tqyXJwl",
+		"Content": "_1vBCb1T1mgrDsFjYf1BVDh"
 	};
 
 /***/ },
@@ -24723,8 +24720,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules&!./../../node_modules/postcss-loader/index.js!./Contact.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?modules&!./../../node_modules/postcss-loader/index.js!./Contact.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules&!./../../../node_modules/postcss-loader/index.js!./About.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules&!./../../../node_modules/postcss-loader/index.js!./About.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -24742,11 +24739,11 @@
 	
 	
 	// module
-	exports.push([module.id, "._304fTi44b6gd43fV3PBHnH {\r\n  color: green;\r\n  padding: 20px;\r\n}\r\n", ""]);
+	exports.push([module.id, "._3SimuPKjkJQamLGvOKfTen {\r\n  color: red;\r\n  padding: 20px;\r\n}\r\n", ""]);
 	
 	// exports
 	exports.locals = {
-		"copy": "_304fTi44b6gd43fV3PBHnH"
+		"copy": "_3SimuPKjkJQamLGvOKfTen"
 	};
 
 /***/ },
@@ -24765,8 +24762,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules&!./../../node_modules/postcss-loader/index.js!./global.base.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?modules&!./../../node_modules/postcss-loader/index.js!./global.base.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules&!./../../../node_modules/postcss-loader/index.js!./User.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules&!./../../../node_modules/postcss-loader/index.js!./User.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -24781,16 +24778,61 @@
 
 	exports = module.exports = __webpack_require__(205)();
 	// imports
-	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,500);", ""]);
+	
 	
 	// module
-	exports.push([module.id, "* {\r\n  box-sizing: border-box;\r\n}\r\n\r\nhtml, body {\r\n  height: 100%;\r\n  padding: 0;\r\n  margin: 0;\r\n  font-family: 'Fira Sans', Helvetica, Arial, _sansserif;\r\n  color: #111;\r\n}\r\n", ""]);
+	exports.push([module.id, "._2FqgrCvdslRt6vTh6Jta8r {\r\n  color: white;\r\n  background-color: #333;\r\n  font-size: 40px;\r\n  font-weight: bold;\r\n  padding: 20px;\r\n}\r\n", ""]);
 	
 	// exports
-
+	exports.locals = {
+		"title": "_2FqgrCvdslRt6vTh6Jta8r"
+	};
 
 /***/ },
 /* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(214);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(206)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules&!./../../../node_modules/postcss-loader/index.js!./Users.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules&!./../../../node_modules/postcss-loader/index.js!./Users.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(205)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "._5KN5K-vL-ZxeunrAm36PO {\r\n  color: green;\r\n  padding: 20px;\r\n}\r\n\r\n._2bFIntiBIR4iYlg9tA782L {\r\n  margin-top: 20px;\r\n}\r\n", ""]);
+	
+	// exports
+	exports.locals = {
+		"copy": "_5KN5K-vL-ZxeunrAm36PO",
+		"userInfo": "_2bFIntiBIR4iYlg9tA782L"
+	};
+
+/***/ },
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = (this && this.__extends) || function (d, b) {
@@ -24805,7 +24847,7 @@
 	            _super.apply(this, arguments);
 	        }
 	        About.prototype.render = function () {
-	            var styles = this.getStyles('About.css');
+	            var styles = this.getStyles('modules/About.css');
 	            return (React.createElement("div", {"className": styles.copy}, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
 	        };
 	        return About;
@@ -24816,7 +24858,33 @@
 
 
 /***/ },
-/* 214 */
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(157), __webpack_require__(200)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, React, react_router_1, BaseModule_1) {
+	    var Users = (function (_super) {
+	        __extends(Users, _super);
+	        function Users() {
+	            _super.apply(this, arguments);
+	        }
+	        Users.prototype.render = function () {
+	            var styles = this.getStyles('modules/Users.css');
+	            return (React.createElement("div", {"className": styles.copy}, React.createElement("ul", null, React.createElement("li", null, React.createElement(react_router_1.Link, {"to": "/users/1"}, "User 1")), React.createElement("li", null, React.createElement(react_router_1.Link, {"to": "/users/2"}, "User 2")), React.createElement("li", null, React.createElement(react_router_1.Link, {"to": "/users/3"}, "User 3"))), React.createElement("div", {"className": styles.userInfo}, this.props.children)));
+	        };
+	        return Users;
+	    })(BaseModule_1.BaseModule);
+	    Object.defineProperty(exports, "__esModule", { value: true });
+	    exports.default = Users;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ },
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __extends = (this && this.__extends) || function (d, b) {
@@ -24825,19 +24893,19 @@
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports, __webpack_require__(1), __webpack_require__(200)], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, React, BaseModule_1) {
-	    var Contact = (function (_super) {
-	        __extends(Contact, _super);
-	        function Contact() {
+	    var User = (function (_super) {
+	        __extends(User, _super);
+	        function User() {
 	            _super.apply(this, arguments);
 	        }
-	        Contact.prototype.render = function () {
-	            var styles = this.getStyles('Contact.css');
-	            return (React.createElement("div", {"className": styles.copy}, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."));
+	        User.prototype.render = function () {
+	            var styles = this.getStyles('modules/User.css');
+	            return (React.createElement("div", {"className": styles.title}, this.props.params.userId));
 	        };
-	        return Contact;
+	        return User;
 	    })(BaseModule_1.BaseModule);
 	    Object.defineProperty(exports, "__esModule", { value: true });
-	    exports.default = Contact;
+	    exports.default = User;
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 

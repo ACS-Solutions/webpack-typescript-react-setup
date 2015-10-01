@@ -20,6 +20,7 @@ module.exports = {
   },
   devtool: 'source-map',
   postcss: [
+    require('postcss-import'),
     require('postcss-nested'),
     require('cssnext')({
       browsers: [
@@ -35,11 +36,11 @@ module.exports = {
         loader: 'ts-loader'
       },
       { // Load module based CSS
-        test: /^(?!global).*\.css$/,
+        test: /^(?!.*global).*\.css$/,
         loader: "style-loader!css-loader?modules&!postcss-loader"
       },
       { // Loader for global css files (filename starts with "global.")
-        test: /^(global).*\.css$/,
+        test: /^(.*global).*\.css$/,
         loader: "style-loader!css-loader!postcss-loader"
       }
     ]
