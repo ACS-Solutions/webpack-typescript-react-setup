@@ -10,10 +10,4 @@ export class BaseModule<P extends Props, S> extends React.Component<P, any> {
   protected getStyles(stylesheet:string):any {
     return cssRequire(stylesheet);
   }
-
-  render() {
-    return (
-      <div></div>
-    );
-  }
 }

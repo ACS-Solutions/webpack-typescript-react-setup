@@ -6,10 +6,10 @@ import About from './modules/About'
 import Users from './modules/Users'
 import User from './modules/User'
 
-// var createBrowserHistory:any = require('history/lib/createBrowserHistory');
+var createHistory:any = require('history/lib/createHashHistory');
 
 React.render((
-  <Router>
+  <Router history={createHistory({queryKey:false})}>
     <Route path="/" component={App}>
       <Route path="about" component={About}></Route>
       <Route path="users" component={Users}>
