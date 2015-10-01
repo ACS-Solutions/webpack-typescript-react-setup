@@ -17,6 +17,7 @@ export default class Users extends BaseModule<Props, any> {
 					<li><Link to="/users/2">User 2</Link></li>
 					<li><Link to="/users/3">User 3</Link></li>
 				</ul>
+
 				<div className={styles.userInfo}>
 					{this.props.children}
 				</div>

@@ -1,8 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,500);
+/* Fonts*/
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,500|Ubuntu:400,500);
 
-:root {
-  --font-family-body: 'Fira Sans', Helvetica, Arial, _sansserif;
-}
+/* Dependencies*/
+@import 'normalize-css/normalize.css';
+
+/* Variables*/
+@import 'theme.css';
 
 * {
   box-sizing: border-box;

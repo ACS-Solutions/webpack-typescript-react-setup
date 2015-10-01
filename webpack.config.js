@@ -16,11 +16,13 @@ module.exports = {
   // },
   // Currently we need to add '.ts' to resolve.extensions array.
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.css', '.ts', '.tsx']
+    extensions: ['', '.js', '.css', '.ts', '.tsx']
   },
   devtool: 'source-map',
   postcss: [
-    require('postcss-import'),
+    require('postcss-import')({
+      path: ['src/css']
+    }),
     require('postcss-nested'),
     require('cssnext')({
       browsers: [
@@ -39,7 +41,7 @@ module.exports = {
         test: /^(?!.*global).*\.css$/,
         loader: "style-loader!css-loader?modules&!postcss-loader"
       },
-      { // Loader for global css files (filename starts with "global.")
+      { // Loader for global css files (filename ends with "global.css")
         test: /^(.*global).*\.css$/,
         loader: "style-loader!css-loader!postcss-loader"
       }

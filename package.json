@@ -20,9 +20,9 @@
   "devDependencies": {
     "css-loader": "^0.19.0",
     "cssnext": "^1.8.4",
-    "divshot": "^0.4.8",
     "gulp": "^3.9.0",
     "gulp-server-livereload": "^1.5.3",
+    "history": "^1.11.1",
     "path": "^0.12.7",
     "postcss": "^5.0.8",
     "postcss-import": "^7.0.0",
