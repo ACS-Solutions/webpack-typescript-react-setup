@@ -24981,10 +24981,6 @@
 	
 	var _createDOMHistory2 = _interopRequireDefault(_createDOMHistory);
 	
-	var _createLocation = __webpack_require__(233);
-	
-	var _createLocation2 = _interopRequireDefault(_createLocation);
-	
 	function isAbsolutePath(path) {
 	  return typeof path === 'string' && path.charAt(0) === '/';
 	}
@@ -25039,9 +25035,11 @@
 	        key = history.createKey();
 	        _DOMUtils.replaceHashPath(addQueryStringValueToPath(path, queryKey, key));
 	      }
+	    } else {
+	      key = state = null;
 	    }
 	
-	    return _createLocation2['default'](path, state, undefined, key);
+	    return history.createLocation(path, state, undefined, key);
 	  }
 	
 	  function startHashChangeListener(_ref) {
@@ -25495,6 +25493,10 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
+	var _warning = __webpack_require__(221);
+	
+	var _warning2 = _interopRequireDefault(_warning);
+	
 	var _deepEqual = __webpack_require__(229);
 	
 	var _deepEqual2 = _interopRequireDefault(_deepEqual);
@@ -25503,20 +25505,26 @@
 	
 	var _Actions = __webpack_require__(223);
 	
-	var _createLocation = __webpack_require__(233);
-	
-	var _createLocation2 = _interopRequireDefault(_createLocation);
-	
-	var _runTransitionHook = __webpack_require__(234);
+	var _runTransitionHook = __webpack_require__(233);
 	
 	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
 	
-	var _deprecate = __webpack_require__(235);
+	var _deprecate = __webpack_require__(234);
 	
 	var _deprecate2 = _interopRequireDefault(_deprecate);
 	
 	function createRandomKey(length) {
 	  return Math.random().toString(36).substr(2, length);
+	}
+	
+	function extractPath(string) {
+	  var match = string.match(/^https?:\/\/[^\/]*/);
+	
+	  if (match == null) return string;
+	
+	  _warning2['default'](false, 'Location path must be pathname + query string only, not a fully qualified URL like "%s"', string);
+	
+	  return string.substring(match[0].length);
 	}
 	
 	function locationsAreEqual(a, b) {
@@ -25641,25 +25649,11 @@
 	  }
 	
 	  function pushState(state, path) {
-	    transitionTo(_createLocation2['default'](path, state, _Actions.PUSH, createKey()));
+	    transitionTo(createLocation(path, state, _Actions.PUSH, createKey()));
 	  }
 	
 	  function replaceState(state, path) {
-	    transitionTo(_createLocation2['default'](path, state, _Actions.REPLACE, createKey()));
-	  }
-	
-	  function setState(state) {
-	    if (location) {
-	      updateLocationState(location, state);
-	      updateLocation(location);
-	    } else {
-	      updateLocationState(getCurrentLocation(), state);
-	    }
-	  }
-	
-	  function updateLocationState(location, state) {
-	    location.state = _extends({}, location.state, state);
-	    saveState(location.key, location.state);
+	    transitionTo(createLocation(path, state, _Actions.REPLACE, createKey()));
 	  }
 	
 	  function goBack() {
@@ -25682,6 +25676,55 @@
 	    return path;
 	  }
 	
+	  function createLocation() {
+	    var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
+	    var state = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
+	    var action = arguments.length <= 2 || arguments[2] === undefined ? _Actions.POP : arguments[2];
+	    var key = arguments.length <= 3 || arguments[3] === undefined ? createKey() : arguments[3];
+	
+	    var pathname = extractPath(path);
+	    var search = '';
+	    var hash = '';
+	
+	    var hashIndex = pathname.indexOf('#');
+	    if (hashIndex !== -1) {
+	      hash = pathname.substring(hashIndex);
+	      pathname = pathname.substring(0, hashIndex);
+	    }
+	
+	    var searchIndex = pathname.indexOf('?');
+	    if (searchIndex !== -1) {
+	      search = pathname.substring(searchIndex);
+	      pathname = pathname.substring(0, searchIndex);
+	    }
+	
+	    if (pathname === '') pathname = '/';
+	
+	    return {
+	      pathname: pathname,
+	      search: search,
+	      hash: hash,
+	      state: state,
+	      action: action,
+	      key: key
+	    };
+	  }
+	
+	  // deprecated
+	  function setState(state) {
+	    if (location) {
+	      updateLocationState(location, state);
+	      updateLocation(location);
+	    } else {
+	      updateLocationState(getCurrentLocation(), state);
+	    }
+	  }
+	
+	  function updateLocationState(location, state) {
+	    location.state = _extends({}, location.state, state);
+	    saveState(location.key, location.state);
+	  }
+	
 	  // deprecated
 	  function registerTransitionHook(hook) {
 	    if (transitionHooks.indexOf(hook) === -1) transitionHooks.push(hook);
@@ -25700,14 +25743,15 @@
 	    transitionTo: transitionTo,
 	    pushState: pushState,
 	    replaceState: replaceState,
-	    setState: setState,
 	    go: go,
 	    goBack: goBack,
 	    goForward: goForward,
 	    createKey: createKey,
 	    createPath: createPath,
 	    createHref: createHref,
+	    createLocation: createLocation,
 	
+	    setState: _deprecate2['default'](setState, 'setState is deprecated; use location.key to save state instead'),
 	    registerTransitionHook: _deprecate2['default'](registerTransitionHook, 'registerTransitionHook is deprecated; use listenBefore instead'),
 	    unregisterTransitionHook: _deprecate2['default'](unregisterTransitionHook, 'unregisterTransitionHook is deprecated; use the callback returned from listenBefore instead')
 	  };
@@ -25902,71 +25946,6 @@
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
-	var _Actions = __webpack_require__(223);
-	
-	function extractPath(string) {
-	  var match = string.match(/https?:\/\/[^\/]*/);
-	
-	  if (match == null) return string;
-	
-	  _warning2['default'](false, 'Location path must be pathname + query string only, not a fully qualified URL like "%s"', string);
-	
-	  return string.substring(match[0].length);
-	}
-	
-	function createLocation() {
-	  var path = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
-	  var state = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
-	  var action = arguments.length <= 2 || arguments[2] === undefined ? _Actions.POP : arguments[2];
-	  var key = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
-	
-	  path = extractPath(path);
-	
-	  var pathname = path;
-	  var search = '';
-	  var hash = '';
-	
-	  var hashIndex = pathname.indexOf('#');
-	  if (hashIndex !== -1) {
-	    hash = pathname.substring(hashIndex);
-	    pathname = pathname.substring(0, hashIndex);
-	  }
-	
-	  var searchIndex = pathname.indexOf('?');
-	  if (searchIndex !== -1) {
-	    search = pathname.substring(searchIndex);
-	    pathname = pathname.substring(0, searchIndex);
-	  }
-	
-	  if (pathname === '') pathname = '/';
-	
-	  return {
-	    pathname: pathname,
-	    search: search,
-	    hash: hash,
-	    state: state,
-	    action: action,
-	    key: key
-	  };
-	}
-	
-	exports['default'] = createLocation;
-	module.exports = exports['default'];
-
-/***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-	
-	var _warning = __webpack_require__(221);
-	
-	var _warning2 = _interopRequireDefault(_warning);
-	
 	function runTransitionHook(hook, location, callback) {
 	  var result = hook(location, callback);
 	
@@ -25983,7 +25962,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 235 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
